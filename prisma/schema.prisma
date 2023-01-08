@@ -25,10 +25,10 @@ model users {
 }
 
 model Family {
-  id BigInt @id @default(autoincrement())
-
-  users users[]
-  child child[]
+  id          BigInt  @id @default(autoincrement())
+  family_name String  @db.VarChar(20)
+  users       users[]
+  child       child[]
 }
 
 model child {

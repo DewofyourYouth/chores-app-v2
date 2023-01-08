@@ -1,0 +1,42 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model schema_migrations {
+  version     BigInt    @id
+  inserted_at DateTime? @db.Timestamp(0)
+}
+
+model users {
+  id          BigInt   @id @default(autoincrement())
+  first_name  String   @db.VarChar(20)
+  last_name   String   @db.VarChar(20)
+  email       String?  @db.VarChar(100)
+  bio         String?  @db.VarChar(255)
+  family      Family   @relation(fields: [familyId], references: [id])
+  inserted_at DateTime @db.Timestamp(0)
+  updated_at  DateTime @db.Timestamp(0)
+  familyId    BigInt
+}
+
+model Family {
+  id BigInt @id @default(autoincrement())
+
+  users users[]
+  child child[]
+}
+
+model child {
+  id          BigInt   @id @default(autoincrement())
+  first_name  String   @db.VarChar(20)
+  last_name   String   @db.VarChar(20)
+  inserted_at DateTime @db.Timestamp(0)
+  updated_at  DateTime @db.Timestamp(0)
+  family      Family   @relation(fields: [familyId], references: [id])
+  familyId    BigInt
+}

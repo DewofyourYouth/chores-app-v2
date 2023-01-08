@@ -1,6 +1,10 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { Prisma, PrismaClient } from "@prisma/client";
 
+BigInt.prototype.toJSON = function () {
+  return this.toString();
+};
+
 const prisma = new PrismaClient();
 const createFamily = async (familyName: string) =>
   await prisma.family.create({

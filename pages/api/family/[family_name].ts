@@ -32,7 +32,17 @@ export default async function handler(
         where: {
           family_name,
         },
-        include: { parents: true, children: true },
+        include: {
+          parents: true,
+          children: {
+            select: {
+              first_name: true,
+              last_name: true,
+              birthday: true,
+            },
+            orderBy: { birthday: "asc" },
+          },
+        },
       });
 
       res.status(200).json(familyData);

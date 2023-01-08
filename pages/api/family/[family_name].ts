@@ -1,5 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { Prisma, PrismaClient } from "@prisma/client";
+
+import { PrismaClient } from "@prisma/client";
 
 BigInt.prototype.toJSON = function () {
   return this.toString();

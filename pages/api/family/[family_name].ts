@@ -34,6 +34,7 @@ export default async function handler(
         where: {
           family_name,
         },
+        include: { parents: true, children: true },
       });
 
       res.status(200).json(familyData);

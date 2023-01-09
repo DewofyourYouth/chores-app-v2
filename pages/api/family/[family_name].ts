@@ -33,9 +33,17 @@ export default async function handler(
           family_name,
         },
         include: {
-          parents: true,
+          parents: {
+            select: {
+              username: true,
+              first_name: true,
+              last_name: true,
+              bio: true,
+            },
+          },
           children: {
             select: {
+              id: true,
               first_name: true,
               last_name: true,
               birthday: true,

@@ -11,7 +11,7 @@ datasource db {
 }
 
 model parent {
-  id          BigInt   @id @default(autoincrement())
+  username    String   @id @db.VarChar(20)
   first_name  String   @db.VarChar(20)
   last_name   String   @db.VarChar(20)
   email       String?  @db.VarChar(100)

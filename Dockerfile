@@ -6,4 +6,5 @@ RUN npm install
 RUN npx prisma generate
 COPY . /app/
 EXPOSE 3000
-CMD yarn dev
+RUN npm run build
+CMD npm run start
